@@ -177,16 +177,18 @@ export default function Hero() {
                 />
               </Link>
 
-              <Link
-                to="/tentang"
+              <a
+                href="https://wa.me/6281234567890?text=Halo%20Centro%20Roast%20Space,%20saya%20ingin%20reservasi"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-sm font-bold text-white/70 border border-white/18 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:text-white hover:border-white/35 transition-all duration-300 hover:scale-[1.03] active:scale-95"
               >
-                Jelajahi Ruang
+                Reservasi Tempat
                 <ArrowUpRight
                   size={15}
                   className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 />
-              </Link>
+              </a>
             </motion.div>
           </div>
         </div>

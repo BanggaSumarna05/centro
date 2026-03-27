@@ -5,6 +5,7 @@ import Gallery from '../components/Gallery';
 import VideoSection from '../components/VideoSection';
 import Menu from '../components/Menu';
 import Events from '../components/Events';
+import Testimonials from '../components/Testimonials';
 import Location from '../components/Location';
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <VideoSection />
       <Menu />
       <Events />
+      <Testimonials />
       <Location />
     </>
   );
