@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function Location() {
   const [copied, setCopied] = useState(false);
-  const mapLink = "https://maps.app.goo.gl/3sydoEmyZfWn2vFSA";
+  const mapLink = "https://maps.app.goo.gl/RBcYjact6fLHbpqd6";
   const address = "Jl. Mohamad Hatta No.119, Sukamanah, Kec. Cipedes, Kota Tasikmalaya, Jawa Barat 46131";
 
   const handleCopy = () => {
