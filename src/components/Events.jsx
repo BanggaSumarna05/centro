@@ -6,13 +6,13 @@ import { Calendar, MapPin, X, Clock, Timer, ArrowRight } from "lucide-react";
 const events = [
   {
     id: 1,
-    img: "/conten_centro/tempat.webp",
-    title: "🎶 Live Music Night",
+    img: "/conten_centro/perunngu.jpg",
+    title: "Opening Centro Roast Space",
     date: "Sabtu, 20:00 WIB",
     type: "Musik",
     urgency: "Starts in 2 days",
     readTime: "3 min read",
-    content: "Malam minggu tidak harus dihabiskan dengan keramaian yang memekakkan telinga. Bergabunglah bersama kami di Centro Roast Space untuk sesi live akustik intim bersama talenta lokal.",
+    content: "Centro Roast Space proudly presents the talents who will color our Grand Opening night: PERUNGGU,RAFAEL MARIO,SOBAT MEJIKOM at Sunday, 5 April 2026 A celebration of music, atmosphere, and curated experience in one space. Mark your calendar. Be there for the beginning of something special..",
   },
   {
     id: 2,

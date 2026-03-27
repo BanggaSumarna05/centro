@@ -36,7 +36,7 @@ export default function Gallery({ hideHeader = false }) {
               </h2>
             </motion.div>
             <motion.a
-              href="https://instagram.com/centroroast"
+              href="https://instagram.com/centro.roastspace"
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, x: 30 }}
