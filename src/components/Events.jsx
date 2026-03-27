@@ -1,136 +1,146 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, MapPin, ArrowUpRight, X, Clock } from "lucide-react";
+import { Calendar, MapPin, X, Clock, Timer, ArrowRight } from "lucide-react";
 
+// Urgency-focused event data
 const events = [
   {
     id: 1,
     img: "/conten_centro/tempat.webp",
-    title: "Live Akustik Sabtu & Kolaborasi Kreatif",
+    title: "🎶 Live Music Night",
     date: "Sabtu, 20:00 WIB",
     type: "Musik",
+    urgency: "Starts in 2 days",
     readTime: "3 min read",
-    content: "Malam minggu tidak harus dihabiskan dengan keramaian yang memekakkan telinga. Bergabunglah bersama kami di Centro Roast Space untuk sesi live akustik intim bersama talenta-talenta lokal Tasikmalaya. Sambil menikmati signature coffee kami, rasakan suasana hangat di mana inspirasi bisa datang dari petikan gitar. Jangan lupa melakukan reservasi tempat lebih awal!",
+    content: "Malam minggu tidak harus dihabiskan dengan keramaian yang memekakkan telinga. Bergabunglah bersama kami di Centro Roast Space untuk sesi live akustik intim bersama talenta lokal.",
   },
   {
     id: 2,
     img: "/conten_centro/makanan1.jpg",
-    title: "Creative Meetup: Membangun Personal Brand",
-    date: "Sabtu, 14:00 WIB",
+    title: "Creative Meetup",
+    date: "Minggu, 14:00 WIB",
     type: "Komunitas",
+    urgency: "Starts in 3 days",
     readTime: "5 min read",
-    content: "Calling all content creators, freelancer, dan creative minds! Bulan ini kami mengadakan sesi kumpul santai membahas tuntas strategi membangun personal brand di era digital. Dihadiri oleh praktisi lokal yang sudah berpengalaman. Acara ini gratis, namun kapasitas terbatas untuk menjaga kualitas diskusi.",
+    content: "Sesi kumpul santai membahas strategi personal brand di era digital. Acara gratis, kapasitas terbatas.",
   },
   {
     id: 3,
     img: "/conten_centro/minuman (2).jpg",
-    title: "Sesi Cupping Kopi Spesial Bulanan",
-    date: "Minggu, 09:00 WIB",
+    title: "Latte Art Workshop",
+    date: "Rabu, 15:00 WIB",
     type: "Edukasi",
+    urgency: "Only 5 seats left",
     readTime: "4 min read",
-    content: "Penasaran dengan perjalanan rasa dari biji kopi hingga berakhir di cangkirmu? Ikuti sesi cupping kopi eksklusif di mana head roaster kami akan memandu kamu mengenali berbagai profil rasa (tasting notes) dari beans terbaru kami. Sesi ini sangat cocok untuk pemula maupun pencinta kopi tingkat lanjut.",
+    content: "Pelajari teknik dasar hingga lanjutan membuat latte art yang indah bersama head barista kami. Sangat cocok bagi Anda pecinta kopi dan barista pemula.",
   },
 ];
 
 export default function Events({ hideHeader = false }) {
   const [selectedEvent, setSelectedEvent] = useState(null);
 
-  // Mencegah scroll saat modal terbuka
   useEffect(() => {
-    if (selectedEvent) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
+    if (selectedEvent) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "unset";
+    return () => { document.body.style.overflow = "unset"; };
   }, [selectedEvent]);
+
   return (
-    <section id="events" className="py-20 sm:py-28 lg:py-32 bg-surface-secondary text-base-dark relative">
+    <section id="events" className="py-24 sm:py-32 bg-surface-secondary text-base-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         {!hideHeader && (
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12 sm:mb-16 gap-4 sm:gap-6">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="max-w-lg"
-            >
-              <span className="text-brand font-bold tracking-widest text-xs sm:text-sm uppercase">Agenda</span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black mt-3 leading-tight text-base-dark">
-                Tempat Berkumpulnya
-                <br className="hidden sm:block" />
-                Ide & Komunitas<span className="text-brand">.</span>
-              </h2>
-            </motion.div>
-            <motion.a
-              href="#"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="flex items-center gap-2 text-brand hover:text-base-dark transition-colors text-sm font-semibold tracking-wider uppercase group shrink-0"
-            >
-              Lihat Semua Event
-              <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </motion.a>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16 sm:mb-20"
+          >
+            <span className="text-[#FF416C] font-bold tracking-widest text-xs sm:text-sm uppercase block mb-3">Agenda Terdekat</span>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-base-dark leading-none">
+              Jangan Sampai <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF416C] to-[#FF4B2B]">Terlewat.</span>
+            </h2>
+          </motion.div>
         )}
 
-        {/* Event Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+        {/* Large Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
           {events.map((event, i) => (
             <motion.div
               key={event.id}
               onClick={() => setSelectedEvent(event)}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.15, duration: 0.6 }}
-              className="group bg-surface-card rounded-2xl sm:rounded-3xl overflow-hidden border border-border-stroke/30 hover:border-brand/30 shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer"
+              className="group bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-3 transition-all duration-500 cursor-pointer flex flex-col h-full border border-border-stroke/20"
             >
-              {/* Image */}
-              <div className="h-48 sm:h-56 overflow-hidden relative">
+              {/* Card Image */}
+              <div className="relative h-56 sm:h-64 overflow-hidden shrink-0">
                 <img
                   src={event.img}
                   alt={event.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                  loading="lazy"
                 />
                 {/* Type Badge */}
-                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-surface-card/90 backdrop-blur-sm border border-border-stroke/30 px-3 py-1 rounded-full text-xs font-semibold text-brand">
+                <span className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-widest text-brand shadow-sm">
                   {event.type}
+                </span>
+
+                {/* Urgency Overlay */}
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 flex justify-end">
+                  <span className="flex items-center gap-1.5 bg-[#FF416C] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg animate-pulse shadow-[#FF416C]/30">
+                    <Timer size={14} /> {event.urgency}
+                  </span>
                 </div>
               </div>
 
-              {/* Content */}
-              <div className="p-5 sm:p-6">
-                <div className="flex items-center gap-2 text-text-muted text-xs sm:text-sm mb-3">
-                  <Calendar size={14} className="text-brand shrink-0" />
-                  <span>{event.date}</span>
-                </div>
-                
-                <h3 className="text-xl sm:text-2xl font-bold text-base-dark mb-3 group-hover:text-brand transition-colors line-clamp-2">
+              {/* Card Content */}
+              <div className="p-6 sm:p-8 flex flex-col flex-1">
+                <h3 className="text-2xl font-black text-base-dark mb-4 group-hover:text-brand transition-colors line-clamp-2">
                   {event.title}
                 </h3>
                 
-                <p className="text-text-muted text-sm line-clamp-2 mb-5 leading-relaxed">
-                  {event.content}
-                </p>
+                <div className="flex flex-col gap-3 text-text-muted text-sm font-medium mb-6">
+                  <div className="flex items-center gap-2">
+                    <Calendar size={16} className="text-brand shrink-0" />
+                    <span>{event.date}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <MapPin size={16} className="text-brand shrink-0" />
+                    <span className="truncate">Centro Roast Space</span>
+                  </div>
+                </div>
 
-                <div className="flex items-center gap-2 text-brand font-semibold text-sm group-hover:underline underline-offset-4">
-                  Baca Selengkapnya
-                  <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <div className="mt-auto w-full bg-surface-secondary text-center py-3.5 rounded-xl font-bold text-base-dark group-hover:bg-brand group-hover:text-white transition-colors duration-300">
+                  Lihat Detail Event
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* Global CTA */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-16 text-center flex flex-col items-center"
+        >
+          <a
+            href="https://wa.me/6281234567890?text=Halo%20Centro%20Roast%20Space,%20saya%20ingin%20info%20event%20selanjutnya"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 bg-base-dark text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-[0_8px_30px_rgba(28,26,23,0.4)] hover:-translate-y-2 transition-all duration-300"
+          >
+            Hubungi Kami Untuk Acara <ArrowRight size={20} />
+          </a>
+        </motion.div>
+
       </div>
 
-      {/* Modal Overlay / Detail Blog */}
+      {/* Modal Overlay */}
       <AnimatePresence>
         {selectedEvent && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 lg:p-8">
@@ -139,7 +149,7 @@ export default function Events({ hideHeader = false }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedEvent(null)}
-              className="absolute inset-0 bg-base-dark/80 backdrop-blur-sm"
+              className="absolute inset-0 bg-base-dark/80 backdrop-blur-md"
             />
             
             <motion.div
@@ -147,67 +157,53 @@ export default function Events({ hideHeader = false }) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 30, scale: 0.95 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="relative w-full max-w-3xl bg-surface-primary rounded-3xl overflow-hidden shadow-2xl z-10 flex flex-col max-h-[90vh]"
+              className="relative w-full max-w-3xl bg-surface-primary rounded-[2rem] overflow-hidden shadow-2xl z-10 flex flex-col max-h-[90vh]"
             >
-              {/* Close Button */}
               <button
                 onClick={() => setSelectedEvent(null)}
-                className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 bg-base-dark/50 hover:bg-brand text-white p-2 rounded-full backdrop-blur-sm transition-colors"
-                aria-label="Tutup detail event"
+                className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 bg-base-dark/50 hover:bg-[#FF416C] text-white p-2.5 rounded-full backdrop-blur-sm transition-colors"
               >
                 <X size={20} />
               </button>
 
-              {/* Modal Banner */}
-              <div className="relative h-64 sm:h-80 lg:h-96 shrink-0">
-                <img
-                  src={selectedEvent.img}
-                  alt={selectedEvent.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-base-dark/90 via-base-dark/30 to-transparent" />
-                
-                {/* Banner Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 lg:p-10">
+              <div className="relative h-64 sm:h-80 shrink-0">
+                <img src={selectedEvent.img} alt={selectedEvent.title} className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="bg-brand text-white px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase">
-                      {selectedEvent.type}
+                    <span className="bg-[#FF416C] text-white px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase flex items-center gap-1">
+                      <Timer size={12}/> {selectedEvent.urgency}
                     </span>
-                    <span className="text-white/80 text-sm font-medium flex items-center gap-1.5">
+                    <span className="text-white/90 text-sm font-medium flex items-center gap-1.5">
                       <Clock size={14} /> {selectedEvent.readTime}
                     </span>
                   </div>
-                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight">
+                  <h2 className="text-2xl sm:text-4xl font-black text-white leading-tight">
                     {selectedEvent.title}
                   </h2>
                 </div>
               </div>
 
-              {/* Modal Body */}
-              <div className="p-6 sm:p-8 lg:p-10 overflow-y-auto bg-surface-primary">
+              <div className="p-6 sm:p-10 overflow-y-auto custom-scrollbar">
                 <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 mb-8 pb-8 border-b border-border-stroke/20">
-                  <div className="flex items-center gap-2 text-base-dark/70 font-medium">
-                    <Calendar size={18} className="text-brand" />
-                    <span>{selectedEvent.date}</span>
+                  <div className="flex items-center gap-2 text-base-dark/80 font-bold">
+                    <Calendar size={18} className="text-brand" /> {selectedEvent.date}
                   </div>
-                  <div className="flex items-center gap-2 text-base-dark/70 font-medium">
-                    <MapPin size={18} className="text-brand" />
-                    <span>Centro Roast Space</span>
+                  <div className="flex items-center gap-2 text-base-dark/80 font-bold">
+                    <MapPin size={18} className="text-brand" /> Centro Roast Space
                   </div>
                 </div>
-
-                <div className="prose prose-lg prose-p:text-base-dark/80 prose-p:leading-relaxed max-w-none">
-                  <p className="text-lg">{selectedEvent.content}</p>
+                <div className="prose prose-lg prose-p:text-base-dark/80 leading-relaxed max-w-none">
+                  <p>{selectedEvent.content}</p>
                 </div>
-
-                <div className="mt-10 pt-8 border-t border-border-stroke/20 flex justify-end">
+                <div className="mt-10 flex justify-end">
                   <a
-                    href="https://wa.me/6281234567890?text=Halo%20Centro%20Roast%20Space,%20saya%20ingin%20info%20lebih%20lanjut%20tentang%20event%20terbaru"
+                    href="https://wa.me/6281234567890?text=Halo%20saya%20ingin%20reservasi%20untuk%20event%20terbaru"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-brand text-white px-8 py-3.5 rounded-xl font-bold hover:bg-brand/90 hover:shadow-lg transition-all"
+                    className="bg-[#FF416C] text-white px-8 py-3.5 rounded-xl font-bold hover:shadow-lg hover:-translate-y-1 transition-all"
                   >
-                    Tanya Tentang Event Ini
+                    Daftar Sekarang
                   </a>
                 </div>
               </div>

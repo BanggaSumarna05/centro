@@ -9,6 +9,10 @@
   --color-surface-secondary: #F4EFE6;
   --color-text-muted: #8D8478;
   --color-border-stroke: #E0D5C1;
+
+  --font-sans: "Inter", sans-serif;
+  --font-heading: "Clash Display", sans-serif;
+  --font-accent: "Playfair Display", serif;
 }
 
 @layer base {
@@ -19,7 +23,11 @@
   }
   
   body {
-    @apply bg-surface-primary text-base-dark antialiased overflow-x-hidden;
+    @apply font-sans bg-surface-primary text-base-dark antialiased overflow-x-hidden;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-heading tracking-[-1px];
   }
 
   ::selection {

@@ -1,89 +1,120 @@
+import { motion } from "framer-motion";
+import { MapPin, Phone, Mail, Clock, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { MapPin, Mail, Phone } from "lucide-react";
+
+const InstagramIcon = ({ size = 18, className = "" }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+  </svg>
+);
 
 export default function Footer() {
-  return (
-    <footer className="bg-base-dark text-white/60 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-brand/5 blur-[200px] pointer-events-none rounded-full" />
+  const currentYear = new Date().getFullYear();
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 relative z-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
-          {/* Brand */}
-          <div className="sm:col-span-2 lg:col-span-2">
-            <div className="flex items-center gap-2.5 mb-5">
-              <img
-                src="/conten_centro/logo.jpg"
-                alt="Centro Logo"
-                className="w-8 h-8 rounded-full object-cover ring-2 ring-white/10"
-              />
-              <span className="text-xl font-extrabold text-white tracking-tight">
-                CENTRO<span className="text-brand">.</span>
-              </span>
-            </div>
-            <p className="max-w-sm mb-6 leading-relaxed text-sm sm:text-base">
-              Ngopi, Berkarya, Terhubung. Ruang kreatif di Tasikmalaya untuk ide-ide brilian.
+  return (
+    <footer className="bg-base-dark text-white border-t border-white/10">
+      <div className="max-w-[1400px] mx-auto px-6 sm:px-12 lg:px-20 py-20 lg:py-24">
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
+          
+          {/* Brand Info */}
+          <div className="lg:col-span-1">
+            <h3 className="text-2xl font-black uppercase tracking-widest mb-6">
+              CENTRO <br/>
+              <span className="text-brand">Roast Space.</span>
+            </h3>
+            <p className="text-white/70 leading-relaxed text-sm mb-8 font-medium">
+              Space isn't empty — it's where ideas collide. Lebih dari sekadar kedai kopi, kami adalah simpul kreativitas di pusat kota Tasikmalaya.
             </p>
-            <div className="flex gap-3">
-              {[
-                <svg key="ig" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>,
-                <svg key="tw" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>,
-              ].map((icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand hover:text-white transition-all duration-300"
-                >
-                  {icon}
-                </a>
-              ))}
+            <div className="flex items-center gap-4">
+              <a
+                href="https://instagram.com/centroroast"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand hover:-translate-y-1 transition-all duration-300"
+              >
+                <InstagramIcon size={18} />
+              </a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-white font-bold mb-4 sm:mb-5 text-sm tracking-wider uppercase">Pintasan</h4>
-            <ul className="space-y-3 text-sm">
-              {[
-                { label: "Tentang", href: "/tentang" },
-                { label: "Menu", href: "/menu" },
-                { label: "Event", href: "/event" },
-                { label: "Galeri", href: "/galeri" },
-              ].map((link) => (
-                <li key={link.label}>
-                  <Link to={link.href} className="hover:text-brand transition-colors">{link.label}</Link>
-                </li>
-              ))}
+            <h4 className="font-bold text-white tracking-[0.2em] uppercase text-sm mb-6 border-b border-white/10 pb-4 inline-block">
+              Quick Links
+            </h4>
+            <ul className="flex flex-col gap-4 text-white/70 font-medium">
+              <li><Link to="/" className="hover:text-brand transition-colors flex items-center gap-2 group"><span className="w-0 group-hover:w-4 transition-all h-px bg-brand overflow-hidden block"></span> Beranda</Link></li>
+              <li><Link to="/tentang" className="hover:text-brand transition-colors flex items-center gap-2 group"><span className="w-0 group-hover:w-4 transition-all h-px bg-brand overflow-hidden block"></span> Tentang Kami</Link></li>
+              <li><Link to="/menu" className="hover:text-brand transition-colors flex items-center gap-2 group"><span className="w-0 group-hover:w-4 transition-all h-px bg-brand overflow-hidden block"></span> Buku Menu</Link></li>
+              <li><Link to="/event" className="hover:text-brand transition-colors flex items-center gap-2 group"><span className="w-0 group-hover:w-4 transition-all h-px bg-brand overflow-hidden block"></span> Agenda Event</Link></li>
+              <li><Link to="/galeri" className="hover:text-brand transition-colors flex items-center gap-2 group"><span className="w-0 group-hover:w-4 transition-all h-px bg-brand overflow-hidden block"></span> Galeri Visual</Link></li>
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Contact Info */}
           <div>
-            <h4 className="text-white font-bold mb-4 sm:mb-5 text-sm tracking-wider uppercase">Kontak</h4>
-            <ul className="space-y-3 text-sm">
-              <li className="flex items-start gap-2.5">
-                <MapPin size={15} className="text-accent-dark mt-0.5 shrink-0" />
-                <span>Jl. KH. Lukmanul Hakim No.01, Tasikmalaya</span>
+            <h4 className="font-bold text-white tracking-[0.2em] uppercase text-sm mb-6 border-b border-white/10 pb-4 inline-block">
+              Get In Touch
+            </h4>
+            <ul className="flex flex-col gap-5 text-white/70 text-sm font-medium">
+              <li className="flex items-start gap-3">
+                <MapPin size={18} className="text-brand shrink-0 mt-0.5" />
+                <span className="leading-relaxed">Jl. Mohamad Hatta No.119, Sukamanah, Kec. Cipedes, Kota Tasikmalaya.</span>
               </li>
-              <li className="flex items-center gap-2.5">
-                <Mail size={15} className="text-accent-dark shrink-0" />
-                <span>hello@centroroast.space</span>
+              <li className="flex items-center gap-3">
+                <Phone size={18} className="text-brand shrink-0" />
+                <a href="https://wa.me/6281234567890" className="hover:text-brand transition-colors">+62 812 3456 7890</a>
               </li>
-              <li className="flex items-center gap-2.5">
-                <Phone size={15} className="text-accent-dark shrink-0" />
-                <span>+62 812-3456-7890</span>
+              <li className="flex items-center gap-3">
+                <Mail size={18} className="text-brand shrink-0" />
+                <a href="mailto:hello@centroroast.com" className="hover:text-brand transition-colors">hello@centroroast.com</a>
               </li>
             </ul>
           </div>
+
+          {/* Open Hours */}
+          <div>
+            <h4 className="font-bold text-white tracking-[0.2em] uppercase text-sm mb-6 border-b border-white/10 pb-4 inline-block">
+              Jam Operasional
+            </h4>
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
+              <div className="flex items-center gap-3 text-brand mb-4">
+                <Clock size={20} />
+                <span className="font-bold uppercase tracking-widest text-sm">Buka Setiap Hari</span>
+              </div>
+              <div className="flex flex-col gap-2 font-mono text-sm text-white/90">
+                <div className="flex justify-between items-center border-b border-white/5 pb-2">
+                  <span>Senin - Jumat</span>
+                  <span>10:00 - 23:00</span>
+                </div>
+                <div className="flex justify-between items-center border-b border-white/5 pb-2">
+                  <span>Sabtu - Minggu</span>
+                  <span>10:00 - 23:00</span>
+                </div>
+                <div className="flex justify-between items-center text-brand">
+                  <span>Libur Nasional</span>
+                  <span>Buka Normal</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
+
       </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs sm:text-sm">
-          <p>© {new Date().getFullYear()} Centro Roast Space. Hak Cipta Dilindungi.</p>
-          <div className="flex gap-4">
-            <a href="#" className="hover:text-white transition-colors">Kebijakan Privasi</a>
-            <a href="#" className="hover:text-white transition-colors">Syarat & Ketentuan</a>
+      {/* Copyright Bar */}
+      <div className="border-t border-white/10 bg-black/20">
+        <div className="max-w-[1400px] mx-auto px-6 sm:px-12 lg:px-20 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-sm font-medium text-white/50">
+            &copy; {currentYear} Centro Roast Space. All rights reserved.
+          </p>
+          <div className="flex items-center gap-6 text-sm font-medium text-white/50">
+            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
           </div>
         </div>
       </div>

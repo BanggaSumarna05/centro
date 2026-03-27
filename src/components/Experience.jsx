@@ -1,74 +1,75 @@
 import { motion } from "framer-motion";
-import { Coffee, Monitor, Users, Heart } from "lucide-react";
+import { Coffee, Mic, Laptop } from "lucide-react";
 
-const features = [
+const values = [
   {
-    icon: Coffee,
-    title: "Kopi Berkualitas",
-    desc: "Biji kopi pilihan yang diroasting dengan presisi untuk cita rasa terbaik di setiap hirupan.",
-    color: "bg-brand/10 text-brand",
+    icon: <Coffee size={36} />,
+    title: "Premium Beans",
+    description: "Biji kopi pilihan yang di-roast sendiri untuk memastikan setiap cangkir memiliki karakter rasa yang konsisten dan luar biasa.",
   },
   {
-    icon: Monitor,
-    title: "Ruang Produktif",
-    desc: "Lingkungan tenang dan nyaman, didesain khusus untuk mendukung fokus dan produktivitasmu.",
-    color: "bg-accent-dark/10 text-accent-dark",
+    icon: <Mic size={36} />,
+    title: "Event Space",
+    description: "Area yang dirancang fleksibel untuk mendukung live music, talkshow, workshop, hingga private gathering komunitas Anda.",
   },
   {
-    icon: Users,
-    title: "Komunitas Kreatif",
-    desc: "Titik temu para kreator, pekerja lepas, dan wirausahawan lokal Tasikmalaya.",
-    color: "bg-brand/10 text-brand",
-  },
-  {
-    icon: Heart,
-    title: "Suasana Nyaman",
-    desc: "Interior bernuansa hangat dan earthy yang membuatmu seketika merasa seperti di rumah.",
-    color: "bg-accent-dark/10 text-accent-dark",
+    icon: <Laptop size={36} />,
+    title: "Work Friendly",
+    description: "Wifi stabil, stopkontak berlimpah, dan suasana nyaman yang sangat ideal bagi remote worker maupun pertemuan bisnis.",
   },
 ];
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-20 sm:py-28 lg:py-32 bg-surface-secondary relative overflow-hidden">
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
+    <section id="experience" className="py-24 sm:py-32 bg-surface-secondary text-base-dark overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Header (optional if we want to add one, but let's keep it clean since it's a feature grid) */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12 sm:mb-16"
+          className="text-center mb-16 sm:mb-20"
         >
-          <span className="text-brand font-bold tracking-widest text-xs sm:text-sm uppercase">
-            Kenapa Memilih Kami
+          <span className="text-brand font-bold tracking-widest text-xs sm:text-sm uppercase block mb-3">
+            Ekspektasi Terbaik
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black mt-3 text-base-dark">
-            Nilai yang Kami Bawa<span className="text-brand">.</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-base-dark">
+            Fasilitas & <span className="text-brand">Layanan.</span>
           </h2>
         </motion.div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-          {features.map((item, i) => (
+        {/* 3 Value Cards Side-by-Side */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          {values.map((value, idx) => (
             <motion.div
-              key={i}
+              key={idx}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="group bg-surface-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-border-stroke/30 hover:border-brand/30 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2"
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.15, duration: 0.6, ease: "easeOut" }}
+              className="group bg-white rounded-3xl p-8 sm:p-10 border border-border-stroke/10 shadow-lg hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:-translate-y-3 transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]"
             >
-              <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl ${item.color} flex items-center justify-center mb-5 sm:mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                <item.icon size={24} />
+              {/* Icon */}
+              <div className="w-20 h-20 rounded-2xl bg-surface-secondary text-brand flex items-center justify-center mb-8 group-hover:bg-brand group-hover:text-white group-hover:rotate-6 transition-all duration-500 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <span className="relative z-10">{value.icon}</span>
               </div>
+              
+              {/* Text */}
+              <h3 className="text-2xl font-black text-base-dark mb-4 group-hover:text-brand transition-colors duration-300">
+                {value.title}
+              </h3>
+              <p className="text-text-muted leading-relaxed line-clamp-3">
+                {value.description}
+              </p>
 
-              <h4 className="text-lg sm:text-xl font-bold text-base-dark mb-2 sm:mb-3">{item.title}</h4>
-              <p className="text-text-muted text-sm sm:text-base leading-relaxed">{item.desc}</p>
+              {/* Decorative Line */}
+              <div className="w-12 h-1 bg-brand/20 mt-8 rounded-full group-hover:w-full group-hover:bg-brand transition-all duration-500" />
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );
